@@ -4,7 +4,6 @@
   "description": "User-invoked agent skills: multi-model review, verified status briefings, and STATUS/TODO/DECISIONS backfill.",
   "author": {
     "name": "Sebastian Cochinescu",
-    "email": "33555104+cochinescu@users.noreply.github.com",
     "url": "https://github.com/cochinescu"
   },
   "homepage": "https://github.com/cochinescu/decent-skills",

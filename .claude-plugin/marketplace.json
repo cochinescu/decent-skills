@@ -2,7 +2,7 @@
   "name": "decent-skills",
   "owner": {
     "name": "Sebastian Cochinescu",
-    "email": "33555104+cochinescu@users.noreply.github.com"
+    "url": "https://github.com/cochinescu"
   },
   "metadata": {
     "description": "User-invoked agent skills: council-review, wawa, and init-repo-docs."

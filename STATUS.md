@@ -23,12 +23,9 @@
   rejected finding is used as the worked example of that cost.
 - GitHub description and topics updated for discovery: `code-review`, `agent-skills`,
   `claude-code`, `codex`, `gemini`, `grok`, `ai-code-review`.
-- Examples are drawn from public repos only. Work on private products is not
-  used here.
+- Examples are drawn from public repos only. Work on private products is not used here.
 
-
-
-- v0.3.1, from a `/council-review` run with Antigravity as the only reachable reviewer (Codex
+- v0.3.1, from a `/council-review` run with Antigravity as the only reachable reviewer.
   It returned three findings; two held.
   - `install.sh` never installed `agents/blind-reviewer.md`, so the clone path still left
     `with claude` broken even after 0.3.0 shipped the file. It now installs it, and skips

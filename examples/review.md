@@ -73,9 +73,8 @@ precisely why the host verifies findings against reality instead of forwarding t
 
 ## Outcome
 
-Two bugs fixed, one finding rejected with evidence, shipped as v0.3.1. Two of three reviewers
-never ran, so this is one model's opinion that happened to be right twice, not the full
-council. The difference is worth stating rather than hiding: a review that cannot say what it
+Two bugs fixed, one finding rejected with evidence, shipped as v0.3.1. Two of three reviewers were unavailable, so this is one model's opinion that happened to be
+right twice, not the full council. The difference is worth stating rather than hiding: a review that cannot say what it
 failed to check is not a review.
 
 ---
