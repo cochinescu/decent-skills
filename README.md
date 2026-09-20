@@ -2,28 +2,31 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
     <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
-    <img alt="decent-skills — Check, then trust." src="assets/banner-light.png" width="800">
+    <img alt="decent-skills. Check, then trust." src="assets/banner-light.png" width="800">
   </picture>
 </p>
 
-# Skills that check, then trust
+# The three skills I actually type
 
-The agent skills I actually run. Small. User-invoked. They work with Claude, Codex, ChatGPT, Gemini, and Grok.
+Public, MIT. They work with Claude Code, Codex, ChatGPT, and Grok. They do not start on their own. `/council-review` can spend three paid CLIs, so you have to mean it.
 
-They do not auto-fire. `/council-review` can spend three paid CLIs — that is a gesture, not a reflex.
+I found myself typing the same things over and over. "Where are we at, and what's next," a few dozen times a day. That is how [`/wawa`](./skills/wawa/SKILL.md) came to life. It still means that. It looks at the repo first, then at `STATUS.md`. If they disagree, that is the point.
 
-## The skills
+[`/council-review`](./skills/council-review/SKILL.md) used to be a pile of terminal windows. I copied the diff around, then asked each of the four LLMs I use to review it. Now it is one command. Codex, Antigravity, and Grok get the same packet. They cannot see the repo. They cannot use tools. Nothing gets fixed until I say `fix`. If one of them is missing, you just get less of a review.
 
-- **[council-review](./skills/council-review/SKILL.md)** — Isolated multi-model review. Codex, Antigravity, and Grok see the same target. None of them see your repo. None of them can use tools. The orchestrator adjudicates. It does not fix until you say `fix`. Not Claude `/code-review`, not Matt Pocock `/code-review`, not Codex `/review`.
-- **[wawa](./skills/wawa/SKILL.md)** — Where we are, and what's next. Notes are hypotheses with a timestamp. Checks the repo first, then distrusts `STATUS.md`.
-- **[init-repo-docs](./skills/init-repo-docs/SKILL.md)** — Backfill `STATUS.md`, `TODO.md`, and `DECISIONS.md` from git history, plans, and the wiki. Evidence-traced. Does not commit.
+It is not Matt Pocock's [`/code-review`](https://www.aihero.dev/skills-code-review), which checks a diff against standards and spec in the same session. It is not Claude's `/code-review`, which hunts bugs in a PR. It is not Codex's `/review`, which is one pass on local git. Same word, different job.
+
+[`/init-repo-docs`](./skills/init-repo-docs/SKILL.md) is how I already split work in the rest of my life: decisions, todos, status. Same thing, for repos, and for the other work I do with agents. It writes `STATUS.md`, `TODO.md`, and `DECISIONS.md` from git, plans, and the wiki. It does not commit.
+
+<p align="center">
+  <img src="assets/how-to-web-demo-nights.webp" alt="Sebastian Cochinescu at How to Web Demo Nights 2026" width="480">
+</p>
+
+I wanted them small, like [Matt Pocock's skills](https://www.aihero.dev/skills). You type them. They do not take over your process.
 
 ## Install
 
-Two ways in. The Claude plugin is a managed bundle. `install.sh` symlinks the files so you can hack on them. Pick one.
-
-<details>
-<summary><strong>Claude Code</strong></summary>
+**Claude Code**
 
 ```bash
 claude plugin marketplace add cochinescu/decent-skills
@@ -32,10 +35,7 @@ claude plugin install decent-skills@decent-skills
 
 Then `/council-review`, `/wawa`, `/init-repo-docs`.
 
-</details>
-
-<details>
-<summary><strong>Codex, ChatGPT, Grok, Gemini</strong></summary>
+**Codex, ChatGPT, Grok**
 
 ```bash
 git clone https://github.com/cochinescu/decent-skills.git
@@ -43,7 +43,7 @@ cd decent-skills
 ./install.sh
 ```
 
-That symlinks `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`. If a host refuses symlinks, the script copies instead.
+That puts `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`. Symlink if it can, copy if it cannot.
 
 One skill only:
 
@@ -51,22 +51,11 @@ One skill only:
 cp -R skills/wawa ~/.agents/skills/
 ```
 
-</details>
+`/council-review` wants `codex`, `agy`, and `grok` on PATH for a full run. Default models: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`. Change the pins if your account differs.
 
-## Why these exist
+## Also, not copied here
 
-Agents fail in three boring ways. These skills are the fix I actually type.
-
-1. **The agent reviews itself.** `/council-review` sends the same packet to three isolated CLIs and adjudicates the findings against the files. A missing reviewer is reduced coverage, not a hard failure. Needs `codex`, `agy`, and `grok` on PATH for full coverage. Default pins: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`. Change them if your account differs.
-2. **The agent quotes the notes.** `/wawa` treats `STATUS.md`, `TODO.md`, and anything said earlier as dated hypotheses. If a note and the repo disagree, that disagreement is the finding.
-3. **The repo has no memory.** `/init-repo-docs` mines git, plans, and the wiki into `STATUS.md` / `TODO.md` / `DECISIONS.md`, then stops. You commit when you mean to.
-
-## Also useful, not copied here
-
-Copying forks a licence or an identity, and a vendored copy always drifts.
-
-- [anxiety-reset](https://github.com/Anima-Felix/anima-felix-agent-skills) — Anima Felix
-- [agentmarkup](https://github.com/agentmarkup/agentmarkup)
+I also publish [anxiety-reset](https://github.com/Anima-Felix/anima-felix-agent-skills) from Anima Felix, and [agentmarkup](https://github.com/agentmarkup/agentmarkup). I do not copy them into this repo. Copies go stale, and the licences are not mine to flatten.
 
 ## License
 
