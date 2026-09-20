@@ -47,4 +47,6 @@ Every run ends with one of: `REVIEW CLEAN`, `VERDICT: FAIL`, or `REVIEW INCOMPLE
 
 ## Requirements
 
-`codex`, `agy` and `grok` on PATH for a full run. Default model pins are in the [root README](../../README.md#install). The full specification, including the isolation contract, the dispatch flags for each CLI and the failure handling, is in [`SKILL.md`](./SKILL.md).
+`codex` (OpenAI), `agy` (Antigravity, running Gemini) and `grok` (xAI) on PATH for a full run, plus `claude` (Claude Code) as the usual host and as the blind reviewer when it is enabled. Each is a separate vendor account, billed to you. The [root README](../../README.md#prerequisites) has a one-liner that reports which you have.
+
+If fewer than two of the three external reviewers answer, the skill enables the Claude blind reviewer for that run and says so, so a fresh install returns a real review rather than nothing. Default model pins are in the [root README](../../README.md#install). The full specification, including the isolation contract, the dispatch flags for each CLI and the failure handling, is in [`SKILL.md`](./SKILL.md).

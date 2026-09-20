@@ -41,6 +41,31 @@ That links `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`, and the 
 
 `/council-review` wants `codex`, `agy` and `grok` on PATH for a full run. Default pins: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`, and Claude `fable` when you add `with claude`. All four sit at their vendor's top tier. Change the pins if your account differs.
 
+## Prerequisites
+
+`/council-review` dispatches to external CLIs, so it is only as good as what you have installed. Each reviewer is a separate vendor account, billed to you.
+
+| Reviewer | CLI on PATH | Vendor | Role |
+|---|---|---|---|
+| Codex | `codex` | OpenAI | core |
+| Gemini, via Antigravity | `agy` | Google | core |
+| Grok | `grok` | xAI | supplemental |
+| Claude, blind subagent | `claude` | Anthropic | off by default, see below |
+
+Claude Code itself (`claude`) is the usual host, and is also what runs the blind reviewer when it is enabled.
+
+Check what you have:
+
+```bash
+for c in codex agy grok claude; do printf "%-7s " "$c"; command -v $c >/dev/null && $c --version 2>&1 | head -1 || echo "not installed"; done
+```
+
+Verified against `codex-cli 0.153.4`, `agy 1.2.7`, `grok 1.0.34` and `claude 2.1.278`. Install each from its own vendor; this repo ships no installers for them.
+
+**With none of the three installed**, `/council-review` would have nothing to dispatch to, so it falls back to the Claude blind reviewer and says so in the report. That is a real review, but a weaker one: Claude is the least independent seat, because it is usually also the host that built the packet. Install at least Codex and Antigravity for the review this skill is actually for.
+
+`/wawa` and `/init-repo-docs` have no prerequisites beyond the host.
+
 ## What this sends, and what it cannot see
 
 `/council-review` sends the code you selected to **OpenAI, Google and xAI**, through their own CLIs under your own accounts. It builds a packet: the diff, the relevant file excerpts, and the check results. That packet leaves your machine. Read it before you point this at anything you cannot share.

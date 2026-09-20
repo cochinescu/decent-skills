@@ -9,6 +9,12 @@ Arguments: $ARGUMENTS
 
 Requires `codex`, `agy`, and `grok` for full coverage. A missing reviewer is reduced coverage, not a hard failure, unless the user named only that reviewer.
 
+Fallback: if fewer than two of the three external reviewers are
+reachable, enable the Claude blind reviewer for that run even though it
+is off by default, and say so in the report. One reviewer with a known
+independence limit beats an empty review. If it was already selected, or
+the user named a single reviewer explicitly, this rule does not apply.
+
 Target: $ARGUMENTS
 Orchestrator: whichever host you typed this in, be it
 Claude Code, Codex, or Grok. The orchestrator is
