@@ -12,7 +12,7 @@ Public, MIT. They work with Claude Code, Codex, ChatGPT, and Grok. They do not s
 
 I found myself typing the same things over and over. "Where are we at, and what's next," a few dozen times a day. That is how [`/wawa`](./skills/wawa/SKILL.md) came to life. It still means that. It looks at the repo first, then at `STATUS.md`. If they disagree, that is the point.
 
-[`/council-review`](./skills/council-review/SKILL.md) used to be a pile of terminal windows. I copied the diff around, then asked each of the four LLMs I use to review it. Now it is one command. Codex, Antigravity, and Grok get the same packet. They cannot see the repo. They cannot use tools. Nothing gets fixed until I say `fix`. If one of them is missing, you just get less of a review.
+[`/council-review`](./skills/council-review/SKILL.md) used to be a pile of terminal windows. I copied the diff around, then asked each of the four LLMs I use to review it. Now it is one command. Codex, Antigravity, and Grok get the same packet. They cannot see the repo. They cannot use tools. Claude orchestrates and is the only one allowed to look at the repo, so every finding gets checked against the real files. Nothing gets fixed until I say `fix`. If one of them is missing, you just get less of a review.
 
 It is not Matt Pocock's [`/code-review`](https://www.aihero.dev/skills-code-review), which checks a diff against standards and spec in the same session. It is not Claude's `/code-review`, which hunts bugs in a PR. It is not Codex's `/review`, which is one pass on local git. Same word, different job.
 
