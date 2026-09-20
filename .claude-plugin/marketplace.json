@@ -12,7 +12,7 @@
       "name": "decent-skills",
       "source": "./",
       "description": "User-invoked agent skills: multi-model review, verified status briefings, and STATUS/TODO/DECISIONS backfill.",
-      "version": "0.3.0"
+      "version": "0.3.1"
     }
   ]
 }

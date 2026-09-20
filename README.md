@@ -53,6 +53,8 @@ One skill only:
 cp -R skills/wawa ~/.agents/skills/
 ```
 
+`with claude` also needs `agents/blind-reviewer.md` in `~/.claude/agents/`. The plugin install and `install.sh` both put it there; a hand-copied single skill does not. `install.sh` leaves an existing `blind-reviewer.md` alone rather than overwriting yours.
+
 `/council-review` wants `codex`, `agy`, and `grok` on PATH for a full run. Default models: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`, and, when you add `with claude`, Claude `fable`. All four are pinned to their vendor's top tier. Change the pins if your account differs.
 
 The orchestrator is whichever host you typed the command in. It is the only participant that reads the repo; every reviewer runs blind.

@@ -209,7 +209,12 @@ selected, dispatch Claude as an independent subagent:
   claude -p --model fable --disallowed-tools
   "Bash,Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Task"
   < <promptfile>, which returns the review text on stdout
-  and nothing else. If neither path is available, skip
+  and nothing else. Run it from the review tempdir, never
+  from the repo, exactly as Codex gets --cd: a CLI started
+  inside the project inherits that project's context and
+  stops being blind. User-level config still loads, so the
+  prompt must carry every fact the reviewer needs and must
+  never reference a path for it to open. If neither path is available, skip
   Claude as reduced coverage. Capture its
   returned message like the other reviewers' outputs.
   Runs concurrently with the shells if the harness

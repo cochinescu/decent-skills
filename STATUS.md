@@ -2,6 +2,19 @@
 
 ## 2026-09-20
 
+- v0.3.1, from a `/council-review` run with Antigravity as the only reachable reviewer (Codex
+  It returned three findings; two held.
+  - `install.sh` never installed `agents/blind-reviewer.md`, so the clone path still left
+    `with claude` broken even after 0.3.0 shipped the file. It now installs it, and skips
+    rather than overwrites when a `blind-reviewer.md` already exists. Verified against three
+    throwaway HOMEs: clean install, rerun, and a pre-existing file left untouched.
+  - The Claude CLI dispatch pinned no working directory, so a run started in the repo would
+    inherit project context and stop being blind. It now takes the review tempdir, like the
+    `--cd` every other reviewer gets.
+  - Rejected: the claim that `claude -p --model fable ... < file` is syntactically broken.
+    Ran it twice, it parses and reads stdin. A blind reviewer cannot test a CLI, so flag
+    reasoning is exactly where its findings need checking.
+
 - v0.3.0: the blind-reviewer agent definition now ships in `agents/blind-reviewer.md`. It had
   only ever existed in Sebastian's `~/.claude/agents/`, so `with claude` named a subagent that
   did not exist for anyone who installed the plugin.
