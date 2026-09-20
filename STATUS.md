@@ -2,6 +2,22 @@
 
 ## 2026-09-20
 
+- Repo prepared for a cold audience (HN). Root README retitled `decent-skills` and opens
+  with the mechanism rather than authorship; the Skillathon paragraph and the photo moved
+  below the fold. New `skills/council-review/README.md` so that folder does not open with a
+  19 KB spec. New `examples/review.md`: the real 0.3.0 run (two bugs found, one finding
+  rejected) plus two earlier agentmarkup runs, the medium-vs-xhigh sequencing catch and the
+  robots.txt precedence bug.
+- Added a "What this sends, and what it cannot see" section: selected code goes to OpenAI,
+  Google and xAI under the user's own accounts, and isolation costs reviewers context. The
+  rejected finding is used as the worked example of that cost.
+- GitHub description and topics updated for discovery: `code-review`, `agent-skills`,
+  `claude-code`, `codex`, `gemini`, `grok`, `ai-code-review`.
+- Examples are drawn from public repos only. Work on private products is not
+  used here.
+
+
+
 - v0.3.1, from a `/council-review` run with Antigravity as the only reachable reviewer (Codex
   It returned three findings; two held.
   - `install.sh` never installed `agents/blind-reviewer.md`, so the clone path still left
