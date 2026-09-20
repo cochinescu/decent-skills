@@ -1,0 +1,4 @@
+interface:
+  display_name: "Init repo docs"
+  short_description: "Backfill STATUS, TODO, and DECISIONS"
+  default_prompt: "Backfill STATUS.md, TODO.md, and DECISIONS.md for this repo."

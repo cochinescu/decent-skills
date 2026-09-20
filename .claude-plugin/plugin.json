@@ -1,0 +1,14 @@
+{
+  "name": "decent-skills",
+  "version": "0.1.0",
+  "description": "User-invoked agent skills: multi-model review, verified status briefings, and STATUS/TODO/DECISIONS backfill.",
+  "author": {
+    "name": "Sebastian Cochinescu",
+    "email": "33555104+cochinescu@users.noreply.github.com",
+    "url": "https://github.com/cochinescu"
+  },
+  "homepage": "https://github.com/cochinescu/decent-skills",
+  "repository": "https://github.com/cochinescu/decent-skills",
+  "license": "MIT",
+  "keywords": ["review", "status", "skills", "agent-skills"]
+}

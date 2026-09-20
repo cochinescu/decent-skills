@@ -1,0 +1,18 @@
+{
+  "name": "decent-skills",
+  "owner": {
+    "name": "Sebastian Cochinescu",
+    "email": "33555104+cochinescu@users.noreply.github.com"
+  },
+  "metadata": {
+    "description": "User-invoked agent skills: review, wawa, and init-repo-docs."
+  },
+  "plugins": [
+    {
+      "name": "decent-skills",
+      "source": "./",
+      "description": "User-invoked agent skills: multi-model review, verified status briefings, and STATUS/TODO/DECISIONS backfill.",
+      "version": "0.1.0"
+    }
+  ]
+}

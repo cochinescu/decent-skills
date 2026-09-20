@@ -1,0 +1,5 @@
+planning-docs/
+.DS_Store
+node_modules/
+.claude/
+

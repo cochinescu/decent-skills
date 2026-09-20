@@ -1,0 +1,4 @@
+interface:
+  display_name: "Review"
+  short_description: "Multi-model read-only code review"
+  default_prompt: "Review the current changes."

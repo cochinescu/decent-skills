@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wawa"
+  short_description: "Where we are, and what's next"
+  default_prompt: "Where are we at, and what's next?"
