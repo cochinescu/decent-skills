@@ -1,6 +1,6 @@
 # /council-review
 
-Three models review the same code without repo access and without seeing each other's answers. The host model, which does see the repo, checks every finding against the real files before any of it reaches you.
+Three models, or four, review the same code without repo access and without seeing each other's answers. The host model, which does see the repo, checks every finding against the real files before any of it reaches you.
 
 Most review tools put one model in your session, looking at your tree, holding your conversation. That model watched you write the code. It agrees with you too easily. This one is three models that cannot touch the repo at all.
 
@@ -11,7 +11,7 @@ Most review tools put one model in your session, looking at your tree, holding y
 3. **The host adjudicates.** Every finding is checked against the actual files. Findings that survive are reported with a verdict; findings that do not are rejected, and the rejection is shown with its reason.
 4. **Nothing is changed.** The run is read-only until you reply `fix`.
 
-A missing reviewer is reduced coverage, not a failed run. Codex and Gemini are the core pair; Grok is supplemental. If a reviewer is out of credit or times out, it is marked and the run continues.
+Claude is the fourth reviewer and is off by default, because this is normally typed in Claude Code, which built the packet and usually wrote the code. Add `with claude` to include it anyway. A missing reviewer is reduced coverage, not a failed run. Codex and Gemini are the core pair; Grok and Claude are supplemental. If a reviewer is out of credit or times out, it is marked and the run continues.
 
 ## Install
 

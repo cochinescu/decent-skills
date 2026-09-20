@@ -10,7 +10,7 @@
 
 Agent skills I use myself. Public, MIT.
 
-[**`/council-review`**](./skills/council-review/README.md) runs a code review through Codex, Gemini and Grok at once. The reviewers get the same evidence packet, cannot inspect the repo, and never see each other's answers. Only the host model reads the real files, and it checks every finding against them before anything is reported to you. Nothing is changed until you say `fix`.
+[**`/council-review`**](./skills/council-review/README.md) runs a code review through Codex, Gemini and Grok at once, and Claude as a fourth when you ask for it. The reviewers get the same evidence packet, cannot inspect the repo, and never see each other's answers. Only the host model reads the real files, and it checks every finding against them before anything is reported to you. Nothing is changed until you say `fix`.
 
 [A full run is in `examples/review.md`](./examples/review.md): four reviewers, three said FAIL and one said PASS, three findings verified and two rejected, including one that three of them agreed on.
 
