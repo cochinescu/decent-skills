@@ -1,21 +1,29 @@
-# decent-skills
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
+    <img alt="decent-skills — Check, then trust." src="assets/banner-light.png" width="800">
+  </picture>
+</p>
 
-Three user-invoked agent skills. One `SKILL.md` each, for Claude, Codex/ChatGPT, Grok, Gemini, and any host that loads Agent Skills.
+# Skills that check, then trust
 
-| Skill | What it does |
-|---|---|
-| **review** | Isolated multi-model review (Codex + Antigravity + Grok). Read-only. Does not fix until you say `fix`. |
-| **wawa** | Where we are, and what's next. Checks the repo, then distrusts the notes. |
-| **init-repo-docs** | Backfill `STATUS.md`, `TODO.md`, and `DECISIONS.md` from git history, plans, and the wiki. Does not commit. |
+The agent skills I actually run. Small. User-invoked. They work with Claude, Codex, ChatGPT, Gemini, and Grok.
 
-Also useful, not copied here:
+They do not auto-fire. `/review` can spend three paid CLIs — that is a gesture, not a reflex.
 
-- [anxiety-reset](https://github.com/Anima-Felix/anima-felix-agent-skills) — Anima Felix
-- [agentmarkup](https://github.com/agentmarkup/agentmarkup)
+## The skills
+
+- **[review](./skills/review/SKILL.md)** — Isolated multi-model review. Codex, Antigravity, and Grok see the same target. None of them see your repo. None of them can use tools. The orchestrator adjudicates. It does not fix until you say `fix`.
+- **[wawa](./skills/wawa/SKILL.md)** — Where we are, and what's next. Notes are hypotheses with a timestamp. Checks the repo first, then distrusts `STATUS.md`.
+- **[init-repo-docs](./skills/init-repo-docs/SKILL.md)** — Backfill `STATUS.md`, `TODO.md`, and `DECISIONS.md` from git history, plans, and the wiki. Evidence-traced. Does not commit.
 
 ## Install
 
-**Claude**
+Two ways in. The Claude plugin is a managed bundle. `install.sh` symlinks the files so you can hack on them. Pick one.
+
+<details>
+<summary><strong>Claude Code</strong></summary>
 
 ```bash
 claude plugin marketplace add cochinescu/decent-skills
@@ -24,7 +32,10 @@ claude plugin install decent-skills@decent-skills
 
 Then `/review`, `/wawa`, `/init-repo-docs`.
 
-**Codex, ChatGPT, Grok, Gemini**
+</details>
+
+<details>
+<summary><strong>Codex, ChatGPT, Grok, Gemini</strong></summary>
 
 ```bash
 git clone https://github.com/cochinescu/decent-skills.git
@@ -34,20 +45,29 @@ cd decent-skills
 
 That symlinks `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`. If a host refuses symlinks, the script copies instead.
 
-Or copy a single skill:
+One skill only:
 
 ```bash
 cp -R skills/wawa ~/.agents/skills/
 ```
 
-These are slash/user skills, not auto-run. `review` can dispatch three paid CLIs — it should not fire on its own.
+</details>
 
-## review
+## Why these exist
 
-Needs `codex`, `agy`, and `grok` on PATH for full coverage. A missing reviewer is reduced coverage, not a hard failure.
+Agents fail in three boring ways. These skills are the fix I actually type.
 
-Default models (change the pins if your account differs): Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`.
+1. **The agent reviews itself.** `/review` sends the same packet to three isolated CLIs and adjudicates the findings against the files. A missing reviewer is reduced coverage, not a hard failure. Needs `codex`, `agy`, and `grok` on PATH for full coverage. Default pins: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`. Change them if your account differs.
+2. **The agent quotes the notes.** `/wawa` treats `STATUS.md`, `TODO.md`, and anything said earlier as dated hypotheses. If a note and the repo disagree, that disagreement is the finding.
+3. **The repo has no memory.** `/init-repo-docs` mines git, plans, and the wiki into `STATUS.md` / `TODO.md` / `DECISIONS.md`, then stops. You commit when you mean to.
+
+## Also useful, not copied here
+
+Copying forks a licence or an identity, and a vendored copy always drifts.
+
+- [anxiety-reset](https://github.com/Anima-Felix/anima-felix-agent-skills) — Anima Felix
+- [agentmarkup](https://github.com/agentmarkup/agentmarkup)
 
 ## License
 
-MIT
+[MIT](./LICENSE) · [Sebastian Cochinescu](https://cochinescu.com)
