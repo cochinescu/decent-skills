@@ -1,0 +1,4 @@
+interface:
+  display_name: "Council review"
+  short_description: "Isolated multi-model code review"
+  default_prompt: "Run a council review of the current changes."

@@ -3,10 +3,11 @@ set -euo pipefail
 
 root="$(cd "$(dirname "$0")" && pwd)"
 dests=("$HOME/.claude/skills" "$HOME/.agents/skills")
-skills=(review wawa init-repo-docs)
+skills=(council-review wawa init-repo-docs)
 
 for dest in "${dests[@]}"; do
   mkdir -p "$dest"
+  rm -rf "$dest/review"
   for name in "${skills[@]}"; do
     src="$root/skills/$name"
     target="$dest/$name"

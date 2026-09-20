@@ -1,6 +1,6 @@
 ---
-name: review
-description: Multi-model read-only review via Codex + Antigravity + Grok (+ optional Claude).
+name: council-review
+description: Isolated multi-model review via Codex + Antigravity + Grok (+ optional Claude). Not a same-session /review or /code-review.
 disable-model-invocation: true
 ---
 
