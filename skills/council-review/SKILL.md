@@ -10,12 +10,19 @@ Arguments: $ARGUMENTS
 Requires `codex`, `agy`, and `grok` for full coverage. A missing reviewer is reduced coverage, not a hard failure, unless the user named only that reviewer.
 
 Target: $ARGUMENTS
+Orchestrator: whichever host you typed this in, be it
+Claude Code, Codex, ChatGPT, or Grok. The orchestrator is
+the only participant allowed to read the repo: it builds
+the packet, adjudicates the findings against the real
+files, and applies fixes on `fix`. Every reviewer runs
+blind no matter which host is orchestrating, and all four
+reviewer types are available regardless of host.
 Reviewers: three by default: Codex, Antigravity, and Grok.
 Codex and Antigravity are the core reviewers; Grok is
 supplemental and cost-capped in the default multi-review
 run. The blind-reviewer subagent (Claude, isolated
 context) is OFF by default — it has a history of wedging
-and slow runs (demoted 2026-08-17) — and joins only when
+and slow runs — and joins only when
 Target contains "with claude" (as a supplemental
 reviewer) or "claude only". If Target contains
 "codex only", "agy only", "grok only", or "claude only",
@@ -168,17 +175,30 @@ selected, dispatch Claude as an independent subagent:
   item 5 reviewer failure. The wedge/timeout retry rules that
   apply to Codex and Antigravity explicitly do NOT apply
   to Grok.
+- A Claude quota or limit message is handled exactly like
+  Grok's: mark the reviewer CLAUDE-LIMIT and continue,
+  since a supplemental reviewer hitting a cap is reduced
+  coverage, not a failed run. Top-tier models have
+  tighter caps; that is the trade for peer-level review.
 - Claude (ONLY when "with claude" or "claude only" was
   selected — skip entirely otherwise): dispatch the
-  blind-reviewer subagent on a fast model (Agent-tool
-  model override "sonnet"; never the expensive session
-  model) with tool access disabled when the dispatch
+  blind-reviewer subagent on Claude's top model, so it
+  matches the tier the other three are pinned to
+  (Agent-tool model override "fable"), with tool access
+  disabled when the dispatch
   surface supports it, and with the full reviewer prompt
   text as its entire input, nothing else from this
   conversation, no skills, memory, or inherited repo
   context. If tool disabling is unavailable, the
   isolation contract still requires zero tool calls; any
-  observed tool call invalidates the review. Capture its
+  observed tool call invalidates the review. On a host
+  with no subagent mechanism, run the identical prompt
+  through the Claude CLI instead:
+  claude -p --model fable --disallowed-tools
+  "Bash,Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Task"
+  < <promptfile>, which returns the review text on stdout
+  and nothing else. If neither path is available, skip
+  Claude as reduced coverage. Capture its
   returned message like the other reviewers' outputs.
   Runs concurrently with the shells if the harness
   allows; note in the report if it serialized. Time-bound
