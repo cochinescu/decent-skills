@@ -1,8 +1,10 @@
 # A full council run
 
-**2026-08-27, on a personal website's repo.** Under review: a new call-to-action component
-rendered site-wide, the build-time script written to guard it, and structured-data markup for
-a set of media appearances. No proprietary code is described below, and none is needed: every
+**2026-08-27, on a personal website's repo.** This predates the packaged skill by three weeks:
+it ran as the personal command `/council-review` was built from, with the same dispatch, the
+same isolation contract and the same four reviewers. Under review: a new call-to-action
+component rendered site-wide, the build-time script written to guard it, and structured-data
+markup for a set of media appearances. No proprietary code is described below, and none is needed: every
 finding is about markup, a check script, or a date.
 
 ## Reviewers
