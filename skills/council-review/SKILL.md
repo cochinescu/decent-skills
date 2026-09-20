@@ -198,7 +198,12 @@ selected, dispatch Claude as an independent subagent:
   conversation, no skills, memory, or inherited repo
   context. If tool disabling is unavailable, the
   isolation contract still requires zero tool calls; any
-  observed tool call invalidates the review. On a host
+  observed tool call invalidates the review. Do not rely
+  on the agent definition's empty tools list to enforce
+  this: some harnesses read an empty allowlist as no
+  restriction rather than no tools. Treat the returned
+  review as invalid if it cites repo detail that was not
+  in the packet you sent. On a host
   with no subagent mechanism, run the identical prompt
   through the Claude CLI instead:
   claude -p --model fable --disallowed-tools
