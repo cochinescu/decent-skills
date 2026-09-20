@@ -7,7 +7,12 @@ skills=(council-review wawa init-repo-docs)
 
 for dest in "${dests[@]}"; do
   mkdir -p "$dest"
-  rm -rf "$dest/review"
+  # Legacy cleanup: the review skill was renamed to council-review in 0.2.0.
+  # Only remove a link this installer created, never an unrelated skill.
+  legacy="$dest/review"
+  if [[ -L "$legacy" && "$(readlink "$legacy")" == "$root/skills/"* ]]; then
+    rm -f "$legacy"
+  fi
   for name in "${skills[@]}"; do
     src="$root/skills/$name"
     target="$dest/$name"

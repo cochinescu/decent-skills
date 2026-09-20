@@ -5,14 +5,14 @@
     "email": "33555104+cochinescu@users.noreply.github.com"
   },
   "metadata": {
-    "description": "User-invoked agent skills: review, wawa, and init-repo-docs."
+    "description": "User-invoked agent skills: council-review, wawa, and init-repo-docs."
   },
   "plugins": [
     {
       "name": "decent-skills",
       "source": "./",
       "description": "User-invoked agent skills: multi-model review, verified status briefings, and STATUS/TODO/DECISIONS backfill.",
-      "version": "0.1.0"
+      "version": "0.2.0"
     }
   ]
 }

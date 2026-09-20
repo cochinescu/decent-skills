@@ -1,6 +1,6 @@
 {
   "name": "decent-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "User-invoked agent skills: multi-model review, verified status briefings, and STATUS/TODO/DECISIONS backfill.",
   "author": {
     "name": "Sebastian Cochinescu",
