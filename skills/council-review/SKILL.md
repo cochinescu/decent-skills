@@ -21,8 +21,15 @@ Reviewers: three by default: Codex, Antigravity, and Grok.
 Codex and Antigravity are the core reviewers; Grok is
 supplemental and cost-capped in the default multi-review
 run. The blind-reviewer subagent (Claude, isolated
-context) is OFF by default — it has a history of wedging
-and slow runs — and joins only when
+context) is OFF by default. Claude is the main
+orchestrator: this command is normally typed in Claude
+Code, which built the packet and, more often than not,
+wrote the code under review. A Claude reviewer is
+therefore the least independent of the four, sharing a
+vendor and a model family with the thing being checked,
+which is the exact failure the other three exist to
+avoid. It also has a history of wedging and slow runs.
+It joins only when
 Target contains "with claude" (as a supplemental
 reviewer) or "claude only". If Target contains
 "codex only", "agy only", "grok only", or "claude only",

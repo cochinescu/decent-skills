@@ -57,6 +57,8 @@ cp -R skills/wawa ~/.agents/skills/
 
 The orchestrator is whichever host you typed the command in. It is the only participant that reads the repo; every reviewer runs blind.
 
+Claude is off by default for a reason. This command is normally typed in Claude Code, so Claude built the packet and usually wrote the code under review. That makes a Claude reviewer the least independent of the four, which is the exact failure the other three exist to avoid. Add `with claude` when you want it anyway.
+
 ## Also, not copied here
 
 I also publish [anxiety-reset](https://github.com/Anima-Felix/anima-felix-agent-skills) from Anima Felix, and [agentmarkup](https://github.com/agentmarkup/agentmarkup). I do not copy them into this repo. Copies go stale, and the licences are not mine to flatten.
