@@ -2,6 +2,16 @@
 
 ## 2026-09-20
 
+- Corrected a false portability claim: the install path advertised ChatGPT, but `install.sh`
+  writes to `~/.claude/skills` and `~/.agents/skills`, and ChatGPT's hosted app reads neither.
+  Codex genuinely does (`~/.codex/config.toml` points at `~/.agents/skills`). Heading is now
+  "Codex and Grok"; the same claim was removed from the blog post in both languages.
+- Stage photo removed from the repo README. It stays on the blog: the blog is Sebastian's
+  surface, the README is for someone landing cold who needs the mechanism, not a biography.
+- STILL BLOCKING A LAUNCH: `examples/review.md` leads with a one-reviewer run, because Codex
+  and Grok were unavailable. A three-reviewer run needs to go above it before this is
+  posted anywhere. Nothing else is outstanding.
+
 - Repo prepared for a cold audience (HN). Root README retitled `decent-skills` and opens
   with the mechanism rather than authorship; the Skillathon paragraph and the photo moved
   below the fold. New `skills/council-review/README.md` so that folder does not open with a

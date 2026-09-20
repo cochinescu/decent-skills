@@ -29,7 +29,7 @@ claude plugin marketplace add cochinescu/decent-skills
 claude plugin install decent-skills@decent-skills
 ```
 
-**Codex, ChatGPT, Grok**
+**Codex and Grok**
 
 ```bash
 git clone https://github.com/cochinescu/decent-skills.git
@@ -37,7 +37,7 @@ cd decent-skills
 ./install.sh
 ```
 
-That links `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`, and the blind reviewer into `~/.claude/agents/`. It symlinks when it can and copies when it cannot, and it leaves an existing `blind-reviewer.md` alone rather than overwriting yours.
+That links `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`, and the blind reviewer into `~/.claude/agents/`. ChatGPT's hosted app does not read a local skills directory, so the script cannot install there; the skills themselves are plain Markdown with frontmatter and carry an `agents/openai.yaml` manifest, so any host that loads a local skills folder can use them. It symlinks when it can and copies when it cannot, and it leaves an existing `blind-reviewer.md` alone rather than overwriting yours.
 
 `/council-review` wants `codex`, `agy` and `grok` on PATH for a full run. Default pins: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`, and Claude `fable` when you add `with claude`. All four sit at their vendor's top tier. Change the pins if your account differs.
 
@@ -52,10 +52,6 @@ The Claude reviewer stays **off by default** for the same reason. This command i
 ## Where it came from
 
 The method predates the skill. Codex, Antigravity and Grok went over the plan, three rounds of it, for the skill we took to the [GTM Skillathon](https://gtm-skillathon-2026-results.upb-alexander.chatgpt.site/) in August, Europe's first agent skill hackathon. It won first place out of the 34 that shipped that evening.
-
-<p align="center">
-  <img src="assets/how-to-web-demo-nights.webp" alt="Sebastian Cochinescu at How to Web Demo Nights 2026" width="480">
-</p>
 
 ## Also, not copied here
 

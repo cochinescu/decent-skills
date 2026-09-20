@@ -11,7 +11,7 @@ Requires `codex`, `agy`, and `grok` for full coverage. A missing reviewer is red
 
 Target: $ARGUMENTS
 Orchestrator: whichever host you typed this in, be it
-Claude Code, Codex, ChatGPT, or Grok. The orchestrator is
+Claude Code, Codex, or Grok. The orchestrator is
 the only participant allowed to read the repo: it builds
 the packet, adjudicates the findings against the real
 files, and applies fixes on `fix`. Every reviewer runs
