@@ -6,25 +6,19 @@
   </picture>
 </p>
 
-# The three agent skills I built
+# decent-skills
 
-I built these for the way I work, and published them. Public, MIT. They run in Claude Code, Codex, ChatGPT, and Grok. None of them start on their own. You type them.
+Agent skills I use myself. Public, MIT.
 
-[`/council-review`](./skills/council-review/SKILL.md) is the one I would keep if I could only keep one. It started as a pile of terminal windows: I pasted the same diff into four models, one at a time, and read back four opinions from four assistants that had each watched me write the code they were reviewing.
+[**`/council-review`**](./skills/council-review/README.md) runs a code review through Codex, Gemini and Grok at once. The reviewers get the same evidence packet, cannot inspect the repo, and never see each other's answers. Only the host model reads the real files, and it checks every finding against them before anything is reported to you. Nothing is changed until you say `fix`.
 
-Now it is one command. Codex, Antigravity, and Grok get the same packet. They cannot see the repo. They cannot use tools. Claude orchestrates and is the only one allowed to look at the repo, so every finding gets checked against the real files. Nothing gets fixed until I say `fix`. A missing reviewer is less coverage, not a failed run.
+[A real run is in `examples/review.md`](./examples/review.md), including the finding the host rejected.
 
-The isolation is the whole design. A reviewer that sat next to you while you wrote the code agrees with you too easily. The name collides with Claude's `/code-review` and Codex's `/review`, but those run inside your session, on your tree. This one is three models that cannot touch it.
+[**`/wawa`**](./skills/wawa/SKILL.md) answers "where are we at, and what's next". It reads the repo first and `STATUS.md` second. When the two disagree, that disagreement is the answer, because notes are hypotheses with a timestamp on them.
 
-The method predates the skill. The same three reviewers, three rounds of them, went over the plan for the skill we took to the [GTM Skillathon](https://gtm-skillathon-2026-results.upb-alexander.chatgpt.site/) in August, Europe's first agent skill hackathon. It won first place out of the 34 that shipped that evening.
+[**`/init-repo-docs`**](./skills/init-repo-docs/SKILL.md) writes `STATUS.md`, `TODO.md` and `DECISIONS.md` from git history, planning docs and your own notes, with the evidence traced. It does not commit.
 
-[`/wawa`](./skills/wawa/SKILL.md) came out of typing "where are we at, and what's next" a few dozen times a day. It reads the repo first, then `STATUS.md`. When the two disagree, that disagreement is the answer. Notes are hypotheses with a timestamp on them.
-
-[`/init-repo-docs`](./skills/init-repo-docs/SKILL.md) is how I already split work everywhere else: decisions, todos, status. It writes `STATUS.md`, `TODO.md`, and `DECISIONS.md` from git history, planning docs, and my wiki, with the evidence traced. It does not commit.
-
-<p align="center">
-  <img src="assets/how-to-web-demo-nights.webp" alt="Sebastian Cochinescu at How to Web Demo Nights 2026" width="480">
-</p>
+None of the three start on their own. You type them.
 
 ## Install
 
@@ -35,8 +29,6 @@ claude plugin marketplace add cochinescu/decent-skills
 claude plugin install decent-skills@decent-skills
 ```
 
-Then `/council-review`, `/wawa`, `/init-repo-docs`.
-
 **Codex, ChatGPT, Grok**
 
 ```bash
@@ -45,21 +37,25 @@ cd decent-skills
 ./install.sh
 ```
 
-That puts `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`. Symlink if it can, copy if it cannot.
+That links `skills/*` into `~/.claude/skills/` and `~/.agents/skills/`, and the blind reviewer into `~/.claude/agents/`. It symlinks when it can and copies when it cannot, and it leaves an existing `blind-reviewer.md` alone rather than overwriting yours.
 
-One skill only:
+`/council-review` wants `codex`, `agy` and `grok` on PATH for a full run. Default pins: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`, and Claude `fable` when you add `with claude`. All four sit at their vendor's top tier. Change the pins if your account differs.
 
-```bash
-cp -R skills/wawa ~/.agents/skills/
-```
+## What this sends, and what it cannot see
 
-`with claude` also needs `agents/blind-reviewer.md` in `~/.claude/agents/`. The plugin install and `install.sh` both put it there; a hand-copied single skill does not. `install.sh` leaves an existing `blind-reviewer.md` alone rather than overwriting yours.
+`/council-review` sends the code you selected to **OpenAI, Google and xAI**, through their own CLIs under your own accounts. It builds a packet: the diff, the relevant file excerpts, and the check results. That packet leaves your machine. Read it before you point this at anything you cannot share.
 
-`/council-review` wants `codex`, `agy`, and `grok` on PATH for a full run. Default models: Codex `gpt-5.6-sol`, Antigravity `Gemini 3.1 Pro (High)`, Grok `grok-4.6`, and, when you add `with claude`, Claude `fable`. All four are pinned to their vendor's top tier. Change the pins if your account differs.
+Isolation is the design, and it has a cost. Reviewers know only what is in the packet, so they will sometimes be confidently wrong about the code around it. In [the example run](./examples/review.md) the reviewer declared a shell command syntactically broken; it was not, and it could not find out, because it cannot run anything. That is the trade: you get an opinion uncontaminated by the session that wrote the code, and you pay for it in context. The host model exists to catch exactly this, which is why findings are verified against the real files and not passed through.
 
-The orchestrator is whichever host you typed the command in. It is the only participant that reads the repo; every reviewer runs blind.
+The Claude reviewer stays **off by default** for the same reason. This command is normally typed in Claude Code, so Claude built the packet and usually wrote the code under review. That makes it the least independent of the four. Add `with claude` when you want it anyway.
 
-Claude is off by default for a reason. This command is normally typed in Claude Code, so Claude built the packet and usually wrote the code under review. That makes a Claude reviewer the least independent of the four, which is the exact failure the other three exist to avoid. Add `with claude` when you want it anyway.
+## Where it came from
+
+The method predates the skill. Codex, Antigravity and Grok went over the plan, three rounds of it, for the skill we took to the [GTM Skillathon](https://gtm-skillathon-2026-results.upb-alexander.chatgpt.site/) in August, Europe's first agent skill hackathon. It won first place out of the 34 that shipped that evening.
+
+<p align="center">
+  <img src="assets/how-to-web-demo-nights.webp" alt="Sebastian Cochinescu at How to Web Demo Nights 2026" width="480">
+</p>
 
 ## Also, not copied here
 
