@@ -8,7 +8,7 @@
 
 # decent-skills
 
-Agent skills I use myself. Public, MIT.
+Agent skills I built for my own use, and decided to open source. Enjoy. Public, MIT.
 
 [**`/council-review`**](./skills/council-review/README.md) runs a code review through Codex, Gemini and Grok at once, and Claude as a fourth when you ask for it. The reviewers get the same evidence packet, cannot inspect the repo, and never see each other's answers. Only the host model reads the real files, and it checks every finding against them before anything is reported to you. Nothing is changed until you say `fix`.
 
@@ -72,7 +72,7 @@ Verified against `codex-cli 0.153.4`, `agy 1.2.7`, `grok 1.0.34` and `claude 2.1
 
 Isolation is the design, and it has a cost. Reviewers know only what is in the packet, so they will sometimes be confidently wrong about the code around it. In [the example run](./examples/review.md) the reviewer declared a shell command syntactically broken; it was not, and it could not find out, because it cannot run anything. That is the trade: you get an opinion uncontaminated by the session that wrote the code, and you pay for it in context. The host model exists to catch exactly this, which is why findings are verified against the real files and not passed through.
 
-The Claude reviewer stays **off by default** for the same reason. This command is normally typed in Claude Code, so Claude built the packet and usually wrote the code under review. That makes it the least independent of the four. Add `with claude` when you want it anyway.
+The Claude reviewer stays **off by default** for the same reason. This command is normally typed in Claude Code, so Claude built the packet and usually wrote the code under review. That makes it the least independent of the four. Add `with claude` when you want it anyway, and note that it switches itself on when fewer than two of the others are reachable, rather than handing you an empty review.
 
 ## Where it came from
 

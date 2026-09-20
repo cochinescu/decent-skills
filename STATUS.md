@@ -2,6 +2,18 @@
 
 ## 2026-09-20
 
+- History rewritten and force-pushed: the private-product wording, the exact account/billing
+  strings and the personal email are gone from every blob of every commit, and all commits are
+  now authored as the GitHub noreply address. Verified from a fresh clone: old SHAs
+  unreachable, no sensitive phrase anywhere, content intact. Repo identity set to noreply so
+  future commits do not reintroduce it. Backup bundle kept outside the repo.
+- The Claude blind reviewer stays off by default but now auto-enables when fewer than two of
+  the three external reviewers are reachable, so a fresh install with no CLIs returns a real
+  review instead of nothing. The run says when it did this.
+- Added a Prerequisites section naming every CLI, its vendor and its role, with a one-liner
+  that reports which are installed. Verified against codex-cli 0.153.4, agy 1.2.7,
+  grok 1.0.34, claude 2.1.278.
+
 - Corrected a false portability claim: the install path advertised ChatGPT, but `install.sh`
   writes to `~/.claude/skills` and `~/.agents/skills`, and ChatGPT's hosted app reads neither.
   Codex genuinely does (`~/.codex/config.toml` points at `~/.agents/skills`). Heading is now
