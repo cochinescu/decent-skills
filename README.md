@@ -80,8 +80,8 @@ The method predates the skill. Codex, Antigravity and Grok went over the plan, t
 
 ## Also, not copied here
 
-I also publish [anxiety-reset](https://github.com/Anima-Felix/anima-felix-agent-skills) from Anima Felix, and [agentmarkup](https://github.com/agentmarkup/agentmarkup). I do not copy them into this repo. Copies go stale, and the licences are not mine to flatten.
+I also publish [anxiety-reset](https://github.com/Anima-Felix/anima-felix-agent-skills), a calm-reset skill from [Anima Felix](https://animafelix.com), and [agentmarkup](https://github.com/agentmarkup/agentmarkup). I do not copy them into this repo. Copies go stale, and the licences are not mine to flatten.
 
 ## License
 
-[MIT](./LICENSE) · [Sebastian Cochinescu](https://cochinescu.com)
+[MIT](./LICENSE) · [Sebastian Cochinescu](https://cochinescu.com) · building [Anima Felix](https://animafelix.com)
