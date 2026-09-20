@@ -76,7 +76,7 @@ The Claude reviewer stays **off by default** for the same reason. This command i
 
 ## Where it came from
 
-The method predates the skill. Codex, Antigravity and Grok went over the plan, three rounds of it, for the skill we took to the [GTM Skillathon](https://gtm-skillathon-2026-results.upb-alexander.chatgpt.site/) in August, Europe's first agent skill hackathon. It won first place out of the 34 that shipped that evening.
+The method predates the skill. Codex, Antigravity and Grok went over the plan, three rounds of it, for the skill we took to the [GTM Skillathon](https://gtm-skillathon-2026-results.upb-alexander.chatgpt.site/) in August, Europe's first agent skill hackathon, supported by OpenAI's Codex. It won first place out of the 34 that shipped that evening.
 
 ## Also, not copied here
 
