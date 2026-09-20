@@ -43,7 +43,7 @@ Every run ends with one of: `REVIEW CLEAN`, `VERDICT: FAIL`, or `REVIEW INCOMPLE
 
 ## Example output
 
-[`examples/review.md`](../../examples/review.md) is a real run against this repo. It found two genuine bugs, including an installer that silently failed to install half of what it claimed. Its third finding was wrong, and the write-up shows why the host rejected it.
+[`examples/review.md`](../../examples/review.md) has real runs. The first is a full four-reviewer council that split three FAIL to one PASS, found a guard script that could pass without checking anything, and rejected a finding three of the four agreed on. Below it, a degraded single-reviewer run against this repo, which found two genuine bugs and got its third finding wrong.
 
 ## Requirements
 

@@ -12,7 +12,7 @@ Agent skills I use myself. Public, MIT.
 
 [**`/council-review`**](./skills/council-review/README.md) runs a code review through Codex, Gemini and Grok at once. The reviewers get the same evidence packet, cannot inspect the repo, and never see each other's answers. Only the host model reads the real files, and it checks every finding against them before anything is reported to you. Nothing is changed until you say `fix`.
 
-[A real run is in `examples/review.md`](./examples/review.md), including the finding the host rejected.
+[A full run is in `examples/review.md`](./examples/review.md): four reviewers, three said FAIL and one said PASS, three findings verified and two rejected, including one that three of them agreed on.
 
 [**`/wawa`**](./skills/wawa/SKILL.md) answers "where are we at, and what's next". It reads the repo first and `STATUS.md` second. When the two disagree, that disagreement is the answer, because notes are hypotheses with a timestamp on them.
 

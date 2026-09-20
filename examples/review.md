@@ -1,11 +1,79 @@
-# A real `/council-review` run
+# A full council run
 
-**2026-09-20, against this repo.** Reviewed: the v0.3.0 diff, which had just shipped
+**2026-08-27, on a personal website's repo.** Under review: a new call-to-action component
+rendered site-wide, the build-time script written to guard it, and structured-data markup for
+a set of media appearances. No proprietary code is described below, and none is needed: every
+finding is about markup, a check script, or a date.
+
+## Reviewers
+
+| Reviewer | Verdict |
+|---|---|
+| Codex `gpt-5.6-sol`, xhigh | FAIL |
+| Gemini 3.1 Pro, via `agy` | FAIL |
+| Grok `grok-4.6`, xhigh | PASS |
+| Claude, blind subagent | FAIL |
+
+Three failed, one passed, on identical input. That disagreement is the product.
+
+## Three findings that held
+
+**1. The guard could pass without checking anything.** The new check script counted matches by
+splitting the page body on a string, then validated attributes by walking parsed anchor tags.
+Two different notions of "a match", so an element that was not a link at all could be counted
+as passing while never being validated. The host reproduced it: replacing the anchor with a
+`<span>` carrying the same attribute left the guard cheerfully reporting 594 passes. A test
+that cannot fail is worse than no test, and it had been written that same day, by the same
+session that wrote the thing it was guarding.
+
+Fixed by counting from the parsed anchors, rejecting the attribute on any non-anchor element,
+exempting redirect documents only when they actually carry a refresh meta, and giving both
+counters a zero-floor so an empty run cannot read as a clean one.
+
+**2. A date in the structured data matched no source.** One appearance carried a date that fed
+a schema `uploadDate`. The host checked three live sources rather than the repo: the video
+platform said one date, the publisher's own page markup said another, its Open Graph said a
+third, and the value in the file matched none of them. It had been copied from the entry below
+it in the same file. Corrected, with the two genuinely different works keeping their own
+different dates.
+
+**3. Structured data claimed an English headline for a Romanian article.** The markup asserted
+an editorial title, written in English, as the headline of a publisher's Romanian URL. The real
+headline was fetched from the live page and used instead, with the language tagged, a local
+canonical, and the publisher's permalink moved to where it belonged.
+
+## One finding rejected, and three reviewers were wrong together
+
+Three of the four independently flagged a hardcoded padding and border-radius as a design-token
+violation. The host checked the tokens and the rest of the codebase: those exact values match an
+existing sibling component, and no token carries them. Changing it would have broken visual
+parity to satisfy a rule that does not exist. Rejected, with the reason recorded.
+
+Reviewer agreement is not evidence. Three models reading the same packet share the same blind
+spot, because they were handed the same context and none of them could open the token file.
+
+A fourth finding, a claim that an embedded video loaded before consent, was also rejected. It
+described real behaviour, but site-wide and pre-existing, and the host traced why it surfaced
+at all: an over-broad framing in the orchestrator's own reviewer prompt. The packet you send
+shapes what comes back, and a finding can be an artifact of your own question.
+
+## Outcome
+
+Three MAJORs verified and fixed, two rejected with reasons, plus several smaller fixes from the
+blind reviewer including a label that echoed the link it sat next to and a pill that clipped its
+own text when a longer translation wrapped to two lines. Nothing was changed until the host had
+checked each finding against the files.
+
+---
+
+# A degraded run, against this repo
+
+**2026-09-20.** Reviewed: the v0.3.0 diff, which had just shipped
 `agents/blind-reviewer.md` so that `with claude` would stop naming a subagent that existed
 only on my own machine.
 
-This is a real run with its real result, not a demo. It is also a degraded run, and that is
-part of what it shows.
+Only one reviewer was available. Kept here because a review that cannot say what it failed
+to check is not a review, and because the finding it got wrong is instructive.
 
 ## Reviewers
 
